@@ -1,0 +1,17 @@
+footer {
+  width: 100%;
+  background-color: #5b8fb9;
+  display: flex;
+  align-items: center;
+}
+.copy {
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.copy h3 {
+  color: #eeeeee;
+  text-shadow: black 0.5px 0.5px;
+  font-size: 1.2rem;
+}

@@ -1,0 +1,14 @@
+main {
+  margin: 0;
+  width: 100%;
+  background-color: #eeeeee;
+}
+
+.content {
+  width: 100%;
+  min-height: 900px;
+}
+
+.content h1 {
+  margin: 0;
+}
