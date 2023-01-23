@@ -1,14 +1,52 @@
 main {
   margin: 0;
   width: 100%;
-  background-color: #eeeeee;
 }
 
 .content {
+  background-color: #eeee;
   width: 100%;
+  justify-content: center;
   min-height: 900px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .content h1 {
   margin: 0;
+}
+
+.sobre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sobre img {
+  height: 300px;
+  margin: 20px;
+}
+
+.sobre h1 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+.sobre p {
+  font-size: 1.2rem;
+  margin: 5px 30px;
+}
+
+.botoes {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.botoes button {
+  margin: 0 10px;
+  background-color: #00adb5;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.botoes button:hover {
+  color: #eeee;
+  background-color: #91d8e4;
 }

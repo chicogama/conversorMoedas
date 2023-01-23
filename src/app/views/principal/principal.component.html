@@ -1,8 +1,36 @@
 <app-cabecalho></app-cabecalho>
 <main>
-  <div class="containter">
-    <div class="content">
-      <h1>Pagina Principal</h1>
+  <div class="containter d-flex justify-content-center">
+    <div class="col-8">
+      <div class="content">
+        <div class="titulo">
+          <app-titulo-pagina></app-titulo-pagina>
+        </div>
+        <div class="sobre">
+          <div class="img-app">
+            <img src="../../../assets/img/arbitrage.png" alt="" />
+          </div>
+          <h1>CONVERSOR DE MOEDAS</h1>
+          <div class="botoes">
+            <a href="listagem-moedas">
+              <button type="button" class="btn btn-primary btn-lg">
+                Listar Símbolos
+              </button></a
+            >
+            <a href="conversao-moedas"
+              ><button type="button" class="btn btn-primary btn-lg">
+                Realizar conversão
+              </button></a
+            >
+          </div>
+
+          <p>
+            Esta é uma aplicação para conversão de valores monetários para
+            diferentes tipos de moedas utilizando a API Exchangerate.
+          </p>
+          <p>https://exchangerate.host/</p>
+        </div>
+      </div>
     </div>
   </div>
 </main>

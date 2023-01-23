@@ -11,6 +11,8 @@ import { RodapeComponent } from './template/rodape/rodape.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ConversaoMoedasComponent } from './views/conversao-moedas/conversao-moedas.component';
 import { ListagemMoedasComponent } from './views/listagem-moedas/listagem-moedas.component';
+import { TituloPaginaComponent } from './template/titulo-pagina/titulo-pagina.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { ListagemMoedasComponent } from './views/listagem-moedas/listagem-moedas
     RodapeComponent,
     ConversaoMoedasComponent,
     ListagemMoedasComponent,
+    TituloPaginaComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,7 @@ import { ListagemMoedasComponent } from './views/listagem-moedas/listagem-moedas
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

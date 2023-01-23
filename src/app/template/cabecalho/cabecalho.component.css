@@ -1,14 +1,37 @@
 nav {
-  width: 100%;
+  width: 90%;
+  justify-content: center;
+  min-height: 70px;
+  background-color: #eeee;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-bottom: 10px;
 }
 .navbar {
+  justify-content: center;
   width: 100%;
   font-weight: normal;
 }
 .navbar-brand {
+  color: 393e46;
   text-transform: uppercase;
 }
-.toolbar {
-  background-color: #eeee;
-  width: 100%;
+
+.navbar-brand img {
+  width: 70px;
+  height: 70px;
+  margin-left: 50px;
+}
+#navbarSupportedContent {
+  /* justify-content: center; */
+}
+
+#navbarSupportedContent > ul > li > a {
+  font-size: 1.2rem;
+}
+#navbarSupportedContent > ul > li:hover {
+  border-bottom: 2px solid #222831;
+}
+
+.active {
+  border-bottom: 2px solid #222831;
 }
