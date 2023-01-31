@@ -1,16 +1,21 @@
+import { Observable } from 'rxjs';
+import { IMoeda } from '../../model/IMoeda';
 import { MoedaService } from './moeda.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-listagem-moedas',
   templateUrl: './listagem-moedas.component.html',
   styleUrls: ['./listagem-moedas.component.css'],
 })
-export class ListagemMoedasComponent {
-  constructor(private MoedaService: MoedaService) {}
-  listarMoedas() {
-    this.MoedaService.listarMoedas()
-      .then((Symbol) => console.log(Symbol))
-      .catch((error) => console.log(error));
+export class ListagemMoedasComponent implements OnInit {
+  moedas: Observable<IMoeda[]>;
+  displayedColumns = ['code', 'description'];
+  //moedas: Observable<IMoeda[]>;
+
+  constructor(private moedaService: MoedaService) {
+    this.moedas = this.moedaService.listarMoedas();
   }
+
+  ngOnInit(): void {}
 }

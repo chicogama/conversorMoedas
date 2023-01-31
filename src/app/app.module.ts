@@ -14,6 +14,7 @@ import { ConversaoMoedasComponent } from './views/conversao-moedas/conversao-moe
 import { ListagemMoedasComponent } from './views/listagem-moedas/listagem-moedas.component';
 import { TituloPaginaComponent } from './template/titulo-pagina/titulo-pagina.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     MatIconModule,
     MatToolbarModule,
+    MatTableModule,
     MatButtonModule,
     HttpClientModule,
   ],

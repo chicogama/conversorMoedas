@@ -1,9 +1,24 @@
 <app-cabecalho></app-cabecalho>
-<div>
-  <h1>listagem de moedas</h1>
-  <div class="button">
-    <button (click)="listarMoedas()">listar</button>
-  </div>
-</div>
+<mat-toolbar color="primary">
+  <span>Listagem de moedas</span>
+</mat-toolbar>
+<table mat-table [dataSource]="moedas" class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
 
+  <!-- Coluna code -->
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef>Codigo</th>
+    <td mat-cell *matCellDef="let moedas">{{ moedas.code }}</td>
+  </ng-container>
+
+  <!-- coluna description -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Descrição</th>
+    <td mat-cell *matCellDef="let moedas">{{ moedas.description }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
 <app-rodape></app-rodape>
