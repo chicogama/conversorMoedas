@@ -1,20 +1,22 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { PrincipalComponent } from './views/principal/principal.component';
 import { CabecalhoComponent } from './template/cabecalho/cabecalho.component';
 import { RodapeComponent } from './template/rodape/rodape.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { ConversaoMoedasComponent } from './views/conversao-moedas/conversao-moedas.component';
 import { ListagemMoedasComponent } from './views/listagem-moedas/listagem-moedas.component';
-import { TituloPaginaComponent } from './template/titulo-pagina/titulo-pagina.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
+import { PrincipalComponent } from './views/principal/principal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,6 @@ import { MatTableModule } from '@angular/material/table';
     RodapeComponent,
     ConversaoMoedasComponent,
     ListagemMoedasComponent,
-    TituloPaginaComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +36,9 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule,
     MatButtonModule,
     HttpClientModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
