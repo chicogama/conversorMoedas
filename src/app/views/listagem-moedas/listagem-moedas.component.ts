@@ -34,6 +34,7 @@ export class ListagemMoedasComponent implements OnInit {
             this.moedas = Object.values(resposta.symbols);
             console.log(this.moedas);
             this.dataSource = new MatTableDataSource<Moeda>(this.moedas);
+
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;
         });
@@ -41,9 +42,5 @@ export class ListagemMoedasComponent implements OnInit {
 
     filtrarMoedas($event: any) {
         this.dataSource.filter = $event.target.value;
-    }
-
-    converterMoedas() {
-        console.log('Converter Moedas');
     }
 }

@@ -8,12 +8,6 @@ import { API_URL } from 'src/environments/environment.development';
     providedIn: 'root',
 })
 export class MoedaService {
-    httpOptions = {
-        headers: new HttpHeaders({
-            'content-type': 'application/json',
-        }),
-    };
-
     constructor(private httpClient: HttpClient) {}
     public listarMoedas(): Observable<any> {
         return this.httpClient.get<Moeda[]>(`${API_URL}symbols`).pipe();

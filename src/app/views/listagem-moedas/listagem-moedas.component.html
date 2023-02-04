@@ -1,48 +1,59 @@
 <app-cabecalho></app-cabecalho>
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <mat-toolbar color="primary">
-        <span>Listagem de moedas</span>
-      </mat-toolbar>
-      <mat-form-field style="width: 100%">
-        <input
-          (keyup)="filtrarMoedas($event)"
-          matInput
-          placeholder="Filtrar moeda"
-        />
-      </mat-form-field>
-      <table
-        matSort
-        mat-table
-        [dataSource]="dataSource"
-        class="mat-elevation-z8"
-      >
-        <!-- Coluna code -->
-        <ng-container matColumnDef="code">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef>Codigo</th>
-          <td mat-cell *matCellDef="let moedas">{{ moedas.code }}</td>
-        </ng-container>
+    <div class="row">
+        <div class="col-12">
+            <mat-toolbar color="primary">
+                <span>Listagem de moedas</span>
+            </mat-toolbar>
+            <mat-form-field style="width: 100%">
+                <input
+                    (keyup)="filtrarMoedas($event)"
+                    matInput
+                    placeholder="Filtrar moeda"
+                />
+            </mat-form-field>
+            <table
+                matSort
+                mat-table
+                [dataSource]="dataSource"
+                class="mat-elevation-z8"
+            >
+                <!-- Coluna code -->
+                <ng-container matColumnDef="code">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                        Codigo
+                    </th>
+                    <td mat-cell *matCellDef="let moedas">
+                        {{ moedas.code }}
+                    </td>
+                </ng-container>
 
-        <!-- coluna description -->
-        <ng-container matColumnDef="description">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef>Descrição</th>
-          <td mat-cell *matCellDef="let moedas">{{ moedas.description }}</td>
-        </ng-container>
+                <!-- coluna description -->
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                        Descrição
+                    </th>
+                    <td mat-cell *matCellDef="let moedas">
+                        {{ moedas.description }}
+                    </td>
+                </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-      <div>
-        <mat-paginator
-          [pageSizeOptions]="[5, 10, 25, 100]"
-          showFirstLastButtons=""
-          aria-label="Selecionar quantidade"
-        >
-        </mat-paginator>
-      </div>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+            </table>
+            <div>
+                <mat-paginator
+                    [pageSizeOptions]="[5, 10, 25, 100]"
+                    showFirstLastButtons=""
+                    aria-label="Selecionar quantidade"
+                >
+                </mat-paginator>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <app-rodape></app-rodape>

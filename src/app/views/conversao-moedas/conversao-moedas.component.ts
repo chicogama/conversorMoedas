@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { MoedaService } from '../listagem-moedas/moeda.service';
-import { Moeda } from 'src/app/model/Moeda';
+import { Moeda } from './../../model/Moeda';
 
 @Component({
     selector: 'app-conversao-moedas',
@@ -8,18 +9,20 @@ import { Moeda } from 'src/app/model/Moeda';
     styleUrls: ['./conversao-moedas.component.css'],
 })
 export class ConversaoMoedasComponent implements OnInit {
-    @Input() conversao: any[] = [];
+    value: any;
+    @Input() moedas: Moeda[] = [];
     constructor(private moedaService: MoedaService) {}
     ngOnInit(): void {
-        this.converterMoedas();
+        try {
+            this.moedaService.listarMoedas().subscribe((dados) => {
+                this.moedas = Object.values(dados.symbols);
+            });
+        } catch (error) {
+            console.log('Ocorreu um erro inesperado' + error);
+        }
     }
 
     converterMoedas() {
-        this.moedaService
-            .conversorMoeda(1, 'USD', 'BRL')
-            .subscribe((resposta) => {
-                this.conversao = Object.values(resposta.info);
-            });
-        console.log(this.conversao);
+        this.moedaService.conversorMoeda(1, 'USD', 'BRL');
     }
 }

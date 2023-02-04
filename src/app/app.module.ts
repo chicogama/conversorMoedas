@@ -1,9 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,28 +21,31 @@ import { ListagemMoedasComponent } from './views/listagem-moedas/listagem-moedas
 import { PrincipalComponent } from './views/principal/principal.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PrincipalComponent,
-    CabecalhoComponent,
-    RodapeComponent,
-    ConversaoMoedasComponent,
-    ListagemMoedasComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatTableModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatInputModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        PrincipalComponent,
+        CabecalhoComponent,
+        RodapeComponent,
+        ConversaoMoedasComponent,
+        ListagemMoedasComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatInputModule,
+        MatSelectModule,
+        MatInputModule,
+        FormsModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
