@@ -12,10 +12,9 @@ import { Moeda } from 'src/app/model/Moeda';
     styleUrls: ['./listagem-moedas.component.css'],
 })
 export class ListagemMoedasComponent implements OnInit {
-    @Input() moedas: Moeda[] = [];
+    moedas: Moeda[] = [];
     readonly displayedColumns = ['code', 'description'];
     dataSource = new MatTableDataSource<Moeda>(this.moedas);
-
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
 

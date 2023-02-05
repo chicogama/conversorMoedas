@@ -1,0 +1,23 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Conversao } from 'src/app/model/Conversao';
+import { API_URL } from 'src/environments/environment.development';
+
+@Injectable({
+    providedIn: 'root',
+})
+export class ConversaoService {
+    constructor(private httpClient: HttpClient) {}
+
+    public conversorMoeda(conversao: Conversao): Observable<Conversao> {
+        return this.httpClient.get<Conversao>(
+            `${API_URL}convert?amount=` +
+                conversao.amount +
+                `&from=` +
+                conversao.from +
+                `&to=` +
+                conversao.to
+        );
+    }
+}

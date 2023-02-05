@@ -1,7 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -44,6 +45,10 @@ import { PrincipalComponent } from './views/principal/principal.component';
         MatSelectModule,
         MatInputModule,
         FormsModule,
+        MatNativeDateModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSelectModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

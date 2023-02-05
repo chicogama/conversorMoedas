@@ -1,53 +1,73 @@
 <app-cabecalho></app-cabecalho>
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <mat-form-field class="form-control" appearance="fill">
-                <mat-label>Moeda Origem</mat-label>
-                <mat-select disableRipple>
-                    <mat-option
-                        *ngFor="let moedas of moedas"
-                        [value]="moedas.code"
-                        >{{ moedas.code }}</mat-option
+    <form [formGroup]="conversorForm">
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="form-control" appearance="fill">
+                    <mat-label>Moeda Origem</mat-label>
+                    <mat-select formControlName="from" name="from">
+                        <mat-option
+                            *ngFor="let moedas of moedas"
+                            [value]="moedas.code"
+                            >{{
+                                moedas.description + " (" + moedas.code + ")"
+                            }}</mat-option
+                        >
+                    </mat-select>
+                    <mat-error *ngIf="this.conversorForm.get('from')?.errors"
+                        >Selecione uma moeda de Origem</mat-error
                     >
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="col">
-            <mat-form-field class="form-control" appearance="fill">
-                <mat-label>Moeda Destino</mat-label>
-                <mat-select disableRipple>
-                    <mat-option
-                        *ngFor="let moedas of moedas"
-                        [value]="moedas.code"
-                        >{{ moedas.code }}</mat-option
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="form-control" appearance="fill">
+                    <mat-label>Moeda Destino</mat-label>
+                    <mat-select formControlName="to" name="to">
+                        <mat-option
+                            *ngFor="let moedas of moedas"
+                            [value]="moedas.code"
+                            >{{ moedas.description + " (" + moedas.code + ")" }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="this.conversorForm.get('to')?.errors"
+                        >Selecione uma moeda de Destino</mat-error
                     >
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="col">
-            <mat-form-field class="form-control">
-                <mat-label>Valor</mat-label>
-                <input
-                    [formNoValidate]="false"
-                    matInput
-                    type="text"
-                    [(ngModel)]="value"
-                />
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <mat-form-field class="form-control">
+                    <mat-label>Valor</mat-label>
+                    <input
+                        formControlName="amount"
+                        name="amount"
+                        [formNoValidate]="false"
+                        matInput
+                        type="text"
+                    />
+                    <button
+                        *ngIf="this.conversorForm.get('amount')?.value != ''"
+                        matSuffix
+                        mat-icon-button
+                        aria-label="Clear"
+                        (click)="this.conversorForm.get('amount')?.setValue('')"
+                    >
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <mat-error>Informe um valor valido</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col">
                 <button
-                    *ngIf="value"
-                    matSuffix
-                    mat-icon-button
-                    aria-label="Clear"
-                    (click)="value = ''"
+                    disabled=""
+                    (click)="converterMoedas()"
+                    type="submit"
+                    mat-raised-button
+                    *ngIf="this.conversorForm.get('amount')?.value != ''"
                 >
-                    <mat-icon>close</mat-icon>
+                    Realizar Conversão
                 </button>
-            </mat-form-field>
+            </div>
         </div>
-        <div class="col">
-            <button mat-raised-button>Realizar Conversão</button>
-        </div>
-    </div>
+    </form>
 </div>
 <app-rodape></app-rodape>
