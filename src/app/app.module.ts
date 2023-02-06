@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -20,6 +21,7 @@ import { RodapeComponent } from './template/rodape/rodape.component';
 import { ConversaoMoedasComponent } from './views/conversao-moedas/conversao-moedas.component';
 import { ListagemMoedasComponent } from './views/listagem-moedas/listagem-moedas.component';
 import { PrincipalComponent } from './views/principal/principal.component';
+import { HistoricoConversoesComponent } from './views/historico-conversoes/historico-conversoes.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +31,7 @@ import { PrincipalComponent } from './views/principal/principal.component';
         RodapeComponent,
         ConversaoMoedasComponent,
         ListagemMoedasComponent,
+        HistoricoConversoesComponent,
     ],
     imports: [
         BrowserModule,
@@ -49,6 +52,7 @@ import { PrincipalComponent } from './views/principal/principal.component';
         FormsModule,
         ReactiveFormsModule,
         MatSelectModule,
+        MatCardModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

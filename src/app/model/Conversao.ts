@@ -1,11 +1,28 @@
 export interface Conversao {
     success?: boolean;
-    query?: any[];
+    query: Query;
+    rate: number;
+    info: Info;
+    historical: boolean;
+    date: Date;
+    result: number;
+}
+
+export interface OrdenaConversao {
+    from: string;
+    to: string;
     amount: number;
-    from: any;
-    to: any;
-    info?: any[];
-    historical?: boolean;
-    date?: Date;
-    result?: number;
+    rate: number;
+    result: number;
+    data: Date;
+}
+
+export interface Query {
+    from: string;
+    to: string;
+    amount: number;
+}
+
+export interface Info {
+    rate: number;
 }

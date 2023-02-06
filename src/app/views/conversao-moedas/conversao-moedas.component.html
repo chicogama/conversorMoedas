@@ -1,5 +1,8 @@
 <app-cabecalho></app-cabecalho>
 <div class="container">
+    <mat-toolbar class="mb-3" color="primary">
+        <span>Conversão de Moedas</span>
+    </mat-toolbar>
     <form [formGroup]="conversorForm">
         <div class="row">
             <div class="col">
@@ -9,9 +12,9 @@
                         <mat-option
                             *ngFor="let moedas of moedas"
                             [value]="moedas.code"
-                            >{{
-                                moedas.description + " (" + moedas.code + ")"
-                            }}</mat-option
+                            >{{ moedas.description }} ({{
+                                moedas.code
+                            }})</mat-option
                         >
                     </mat-select>
                     <mat-error *ngIf="this.conversorForm.get('from')?.errors"
@@ -26,8 +29,10 @@
                         <mat-option
                             *ngFor="let moedas of moedas"
                             [value]="moedas.code"
-                            >{{ moedas.description + " (" + moedas.code + ")" }}
-                        </mat-option>
+                            >{{ moedas.description }} ({{
+                                moedas.code
+                            }})</mat-option
+                        >
                     </mat-select>
                     <mat-error *ngIf="this.conversorForm.get('to')?.errors"
                         >Selecione uma moeda de Destino</mat-error
@@ -36,7 +41,7 @@
             </div>
             <div class="col">
                 <mat-form-field class="form-control">
-                    <mat-label>Valor</mat-label>
+                    <mat-label>Valor em </mat-label>
                     <input
                         formControlName="amount"
                         name="amount"
@@ -44,6 +49,9 @@
                         matInput
                         type="text"
                     />
+                    <mat-label>
+                        {{ this.conversorForm.get("from")?.value }}</mat-label
+                    >
                     <button
                         *ngIf="this.conversorForm.get('amount')?.value != ''"
                         matSuffix
@@ -56,17 +64,34 @@
                     <mat-error>Informe um valor valido</mat-error>
                 </mat-form-field>
             </div>
-            <div class="col">
+        </div>
+        <div class="row mt-3">
+            <div class="button-conv">
                 <button
-                    disabled=""
                     (click)="converterMoedas()"
                     type="submit"
                     mat-raised-button
-                    *ngIf="this.conversorForm.get('amount')?.value != ''"
                 >
                     Realizar Conversão
                 </button>
             </div>
+        </div>
+        <div class="container mt-3">
+            <mat-card>
+                <mat-card-content>
+                    <mat-card-header>
+                        <mat-card-title> Conversão </mat-card-title>
+                    </mat-card-header>
+                    <div *ngIf="isResult">
+                        <p>
+                            {{ this.query[2] }} em {{ this.query[0] }} equivale
+                            a
+                        </p>
+                        <h1>{{ this.amount }} em {{ this.query[1] }}</h1>
+                        <p>Taxa de conversão utilizada: {{ this.rate }}</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
         </div>
     </form>
 </div>

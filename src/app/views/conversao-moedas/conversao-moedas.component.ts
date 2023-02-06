@@ -1,10 +1,12 @@
-import { ConversaoService } from './conversao.service';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Conversao } from './../../model/Conversao';
-import { Component, Input, OnInit } from '@angular/core';
+import { from } from 'rxjs';
+import { Conversao } from 'src/app/model/Conversao';
 
 import { MoedaService } from '../listagem-moedas/moeda.service';
+import { Query } from './../../model/Conversao';
 import { Moeda } from './../../model/Moeda';
+import { ConversaoService } from './conversao.service';
 
 @Component({
     selector: 'app-conversao-moedas',
@@ -12,10 +14,12 @@ import { Moeda } from './../../model/Moeda';
     styleUrls: ['./conversao-moedas.component.css'],
 })
 export class ConversaoMoedasComponent implements OnInit {
-    value: any;
-    result!: number;
     moedas: Moeda[] = [];
     conversoes: Conversao[] = [];
+    query: Query[] = [];
+    isResult!: boolean;
+    amount!: number;
+    rate!: number;
     conversorForm!: FormGroup;
 
     constructor(
@@ -25,9 +29,9 @@ export class ConversaoMoedasComponent implements OnInit {
     ) {}
     ngOnInit(): void {
         this.conversorForm = this.formB.group({
-            amount: ['', [Validators.required], [Validators.pattern]],
-            from: ['', [Validators.required]],
-            to: ['', [Validators.required]],
+            amount: ['', [Validators.required]],
+            from: ['BRL', [Validators.required]],
+            to: ['USD', [Validators.required]],
         });
         try {
             this.moedaService.listarMoedas().subscribe((dados) => {
@@ -39,22 +43,20 @@ export class ConversaoMoedasComponent implements OnInit {
     }
 
     converterMoedas(): void {
-        this.conversorService
-            .conversorMoeda(this.conversorForm.value)
-            .subscribe((resposta: Conversao) => {});
-        console.log(this.result);
-        this.conversorForm.reset();
-    }
-
-    validateNumber(fieldValue: any) {
-        if (isNaN(fieldValue)) {
-            return {
-                isValid: false,
-                errorMessage: 'Please enter a valid number.',
-            };
+        try {
+            this.conversorService
+                .conversorMoeda(this.conversorForm.value)
+                .subscribe((resposta) => {
+                    this.query = Object.values(resposta.query);
+                    this.amount = resposta.result;
+                    this.rate = resposta.info.rate;
+                    this.isResult = true;
+                    console.log;
+                });
+        } catch (error) {
+            console.log(error);
         }
-        return {
-            isValid: true,
-        };
+
+        this.conversorForm.get('amount')?.reset();
     }
 }

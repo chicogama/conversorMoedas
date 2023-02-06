@@ -1,10 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-
-import { MoedaService } from './moeda.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Moeda } from 'src/app/model/Moeda';
+
+import { MoedaService } from './moeda.service';
 
 @Component({
     selector: 'app-listagem-moedas',

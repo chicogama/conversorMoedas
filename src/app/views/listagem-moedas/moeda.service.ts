@@ -11,8 +11,6 @@ import { API_URL } from 'src/environments/environment.development';
 export class MoedaService {
     constructor(private httpClient: HttpClient) {}
     public listarMoedas(): Observable<any> {
-        return this.httpClient.get<Moeda>(`${API_URL}symbols`).pipe();
-
-        /* .pipe(tap((moedas: any) => console.log(moedas))); */
+        return this.httpClient.get<Moeda>(`${API_URL}symbols`);
     }
 }
