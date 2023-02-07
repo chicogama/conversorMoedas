@@ -11,6 +11,9 @@ import { API_URL } from 'src/environments/environment.development';
 export class ConversaoService {
     constructor(private httpClient: HttpClient) {}
 
+    conversaoHistorico: Array<OrdenaConversao> = [];
+    historicoConversoes!: Observable<OrdenaConversao[]>;
+
     public conversorMoeda(conversao: Query): Observable<any> {
         return this.httpClient.get<Conversao>(
             `${API_URL}convert?amount=` +
@@ -19,6 +22,44 @@ export class ConversaoService {
                 conversao.from +
                 `&to=` +
                 conversao.to
+        );
+    }
+    verificarsessionStorage() {
+        return localStorage.getItem('conversoes') !== null;
+    }
+
+    definerHistorico(
+        from: string,
+        to: string,
+        amount: number,
+        result: number,
+        rate: number,
+        data: string,
+        hour: string
+    ): OrdenaConversao {
+        return {
+            from,
+            to,
+            amount,
+            result,
+            rate,
+            data,
+            hour,
+        };
+    }
+
+    armazenaConversao(conversao: OrdenaConversao) {
+        let existe = this.verificarsessionStorage();
+
+        if (existe) {
+            this.historicoConversoes = JSON.parse(
+                sessionStorage.getItem('conversoes' || '')
+            );
+        }
+        this.conversaoHistorico.push(conversao);
+        sessionStorage.setItem(
+            'conversoes',
+            JSON.stringify(this.conversaoHistorico)
         );
     }
 }

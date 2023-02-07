@@ -17,9 +17,12 @@ export class ConversaoMoedasComponent implements OnInit {
     moedas: Moeda[] = [];
     conversoes: Conversao[] = [];
     query: Query[] = [];
+    queryHist!: Query;
     isResult!: boolean;
-    amount!: number;
+    result!: number;
     rate!: number;
+    date!: string;
+    hour!: string;
     conversorForm!: FormGroup;
 
     constructor(
@@ -48,10 +51,35 @@ export class ConversaoMoedasComponent implements OnInit {
                 .conversorMoeda(this.conversorForm.value)
                 .subscribe((resposta) => {
                     this.query = Object.values(resposta.query);
-                    this.amount = resposta.result;
+                    const from = Object.values(resposta.query);
+                    this.result = resposta.result;
                     this.rate = resposta.info.rate;
                     this.isResult = true;
-                    console.log;
+
+                    let objeto = this.conversorService.definerHistorico(
+                        String(this.query[0]),
+                        String(this.query[1]),
+                        Number(this.query[2]),
+                        this.result,
+                        this.rate,
+                        (this.date = new Date().toLocaleDateString('pt-br', {
+                            day: 'numeric',
+                            month: 'numeric',
+                            year: 'numeric',
+                        })),
+                        (this.hour = new Date().toLocaleTimeString(
+                            navigator.language,
+                            {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit',
+                            }
+                        ))
+                    );
+
+                    console.log(objeto);
+
+                    this.conversorService.armazenaConversao(objeto);
                 });
         } catch (error) {
             console.log(error);

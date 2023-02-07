@@ -14,7 +14,8 @@ export interface OrdenaConversao {
     amount: number;
     rate: number;
     result: number;
-    data: Date;
+    data: string;
+    hour: string;
 }
 
 export interface Query {
