@@ -1,9 +1,10 @@
-import { Query } from './../../model/Conversao';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Conversao, OrdenaConversao } from 'src/app/model/Conversao';
 import { API_URL } from 'src/environments/environment.development';
+
+import { Query } from './../../model/Conversao';
 
 @Injectable({
     providedIn: 'root',
@@ -24,8 +25,9 @@ export class ConversaoService {
                 conversao.to
         );
     }
-    verificarsessionStorage() {
+    verificarsessionStorage(): boolean {
         return localStorage.getItem('conversoes') !== null;
+        return false;
     }
 
     definerHistorico(
@@ -52,14 +54,31 @@ export class ConversaoService {
         let existe = this.verificarsessionStorage();
 
         if (existe) {
-            this.historicoConversoes = JSON.parse(
-                sessionStorage.getItem('conversoes' || '')
+            this.conversaoHistorico = JSON.parse(
+                sessionStorage.getItem('conversoes') || ''
             );
         }
-        this.conversaoHistorico.push(conversao);
-        sessionStorage.setItem(
-            'conversoes',
-            JSON.stringify(this.conversaoHistorico)
-        );
+
+        if (this.conversaoHistorico.indexOf(conversao) == -1) {
+            this.conversaoHistorico.push(conversao);
+            sessionStorage.setItem(
+                'conversoes',
+                JSON.stringify(this.conversaoHistorico)
+            );
+        } else {
+            this.conversaoHistorico.push(conversao);
+            sessionStorage.setItem('conversoes', JSON.stringify(conversao));
+        }
     }
+
+    /*     obterConversoes(): Observable<any> {
+        if (JSON.parse(sessionStorage.getItem('conversoes') || '')) {
+            this.conversaoHistorico = JSON.parse(
+                sessionStorage.getItem('conversoes') || ''
+            );
+        } else {
+            this.conversaoHistorico = [];
+        }
+        return this.historicoConversoes;
+    } */
 }
