@@ -60,25 +60,36 @@ export class ConversaoService {
         }
 
         if (this.conversaoHistorico.indexOf(conversao) == -1) {
+            conversao.id = Number(this.conversaoHistorico.length);
             this.conversaoHistorico.push(conversao);
             sessionStorage.setItem(
                 'conversoes',
                 JSON.stringify(this.conversaoHistorico)
             );
         } else {
+            conversao.id = 0;
             this.conversaoHistorico.push(conversao);
             sessionStorage.setItem('conversoes', JSON.stringify(conversao));
         }
     }
 
-    /*     obterConversoes(): Observable<any> {
-        if (JSON.parse(sessionStorage.getItem('conversoes') || '')) {
-            this.conversaoHistorico = JSON.parse(
-                sessionStorage.getItem('conversoes') || ''
+    deletarConversao(id: number) {
+        this.conversaoHistorico = JSON.parse(
+            sessionStorage.getItem('conversoes') || ''
+        );
+
+        let indexDel = this.conversaoHistorico.findIndex(
+            (element) => element.id === id
+        );
+
+        if (indexDel !== -1) {
+            this.conversaoHistorico.splice(indexDel, 1);
+            sessionStorage.setItem(
+                'conversoes',
+                JSON.stringify(this.conversaoHistorico)
             );
-        } else {
-            this.conversaoHistorico = [];
         }
-        return this.historicoConversoes;
-    } */
+
+        console.log('Deletado: ' + id);
+    }
 }

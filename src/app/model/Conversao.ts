@@ -9,6 +9,7 @@ export interface Conversao {
 }
 
 export interface OrdenaConversao {
+    id?: number;
     from: string;
     to: string;
     amount: number;
