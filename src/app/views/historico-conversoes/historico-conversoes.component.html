@@ -54,7 +54,7 @@
                 {{ conversaoHistorico.result }}
                 <mat-icon
                     matTooltip="Valor convertido é maior que U$ 10.000"
-                    *ngIf="!conversaoHistorico.maoirDezMil"
+                    *ngIf="conversaoHistorico.maoirDezMil"
                     >priority_high</mat-icon
                 >
             </td>

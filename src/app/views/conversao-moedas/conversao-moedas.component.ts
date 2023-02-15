@@ -84,6 +84,7 @@ export class ConversaoMoedasComponent implements OnInit {
                         maiorDezMil
                     );
 
+                    console.log(maiorDezMil);
                     console.log(objeto);
 
                     this.conversorService.armazenaConversao(objeto);
