@@ -17,6 +17,7 @@ export interface OrdenaConversao {
     result: number;
     data: string;
     hour: string;
+    maiorDezMil: boolean;
 }
 
 export interface Query {

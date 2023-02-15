@@ -24,6 +24,7 @@ export class ConversaoMoedasComponent implements OnInit {
     date!: string;
     hour!: string;
     conversorForm!: FormGroup;
+    maiorDezMil!: boolean;
 
     constructor(
         private conversorService: ConversaoService,
@@ -55,6 +56,11 @@ export class ConversaoMoedasComponent implements OnInit {
                     this.result = resposta.result;
                     this.rate = resposta.info.rate;
                     this.isResult = true;
+                    const maiorDezMil =
+                        this.conversorService.verificarValorAlto(
+                            resposta.query,
+                            this.result
+                        );
 
                     let objeto = this.conversorService.definerHistorico(
                         String(this.query[0]),
@@ -74,7 +80,8 @@ export class ConversaoMoedasComponent implements OnInit {
                                 minute: '2-digit',
                                 second: '2-digit',
                             }
-                        ))
+                        )),
+                        maiorDezMil
                     );
 
                     console.log(objeto);

@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,9 +20,9 @@ import { AppComponent } from './app.component';
 import { CabecalhoComponent } from './template/cabecalho/cabecalho.component';
 import { RodapeComponent } from './template/rodape/rodape.component';
 import { ConversaoMoedasComponent } from './views/conversao-moedas/conversao-moedas.component';
+import { HistoricoConversoesComponent } from './views/historico-conversoes/historico-conversoes.component';
 import { ListagemMoedasComponent } from './views/listagem-moedas/listagem-moedas.component';
 import { PrincipalComponent } from './views/principal/principal.component';
-import { HistoricoConversoesComponent } from './views/historico-conversoes/historico-conversoes.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +54,7 @@ import { HistoricoConversoesComponent } from './views/historico-conversoes/histo
         ReactiveFormsModule,
         MatSelectModule,
         MatCardModule,
+        MatTooltipModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -14,6 +14,7 @@ export class ConversaoService {
 
     conversaoHistorico: Array<OrdenaConversao> = [];
     historicoConversoes!: Observable<OrdenaConversao[]>;
+    result!: number;
 
     public conversorMoeda(conversao: Query): Observable<any> {
         return this.httpClient.get<Conversao>(
@@ -37,7 +38,8 @@ export class ConversaoService {
         result: number,
         rate: number,
         data: string,
-        hour: string
+        hour: string,
+        maiorDezMil: boolean
     ): OrdenaConversao {
         return {
             from,
@@ -47,7 +49,23 @@ export class ConversaoService {
             rate,
             data,
             hour,
+            maiorDezMil,
         };
+    }
+
+    verificarValorAlto(conversao: Query, result: number): boolean {
+        if (conversao.to == 'USD' && result > 100000) {
+            return true;
+        }
+        if (conversao.to != 'USD') {
+            conversao.to = 'USD';
+            this.conversorMoeda(conversao).subscribe((resposta) => {
+                this.result = resposta.result;
+                this.verificarValorAlto(conversao, this.result);
+            });
+        } else {
+            return false;
+        }
     }
 
     armazenaConversao(conversao: OrdenaConversao) {
