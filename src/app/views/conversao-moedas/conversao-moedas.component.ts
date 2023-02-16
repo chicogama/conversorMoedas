@@ -53,14 +53,13 @@ export class ConversaoMoedasComponent implements OnInit {
                 .subscribe((resposta) => {
                     this.query = Object.values(resposta.query);
                     const from = Object.values(resposta.query);
-                    this.result = resposta.result;
+                    this.result = resposta.result.toFixed(2);
                     this.rate = resposta.info.rate;
                     this.isResult = true;
-                    const maiorDezMil =
-                        this.conversorService.verificarValorAlto(
-                            resposta.query,
-                            this.result
-                        );
+                    this.maiorDezMil = this.conversorService.verificarValorAlto(
+                        resposta.query,
+                        this.result
+                    );
 
                     let objeto = this.conversorService.definerHistorico(
                         String(this.query[0]),
@@ -81,10 +80,10 @@ export class ConversaoMoedasComponent implements OnInit {
                                 second: '2-digit',
                             }
                         )),
-                        maiorDezMil
+                        this.maiorDezMil
                     );
 
-                    console.log(maiorDezMil);
+                    console.log(this.maiorDezMil);
                     console.log(objeto);
 
                     this.conversorService.armazenaConversao(objeto);

@@ -53,7 +53,7 @@ export class ConversaoService {
         };
     }
 
-    verificarValorAlto(conversao: Query, result: number): any {
+    verificarValorAlto(conversao: Query, result: number): boolean {
         if (conversao.to == 'USD' && result > 100000) {
             return true;
         }
@@ -66,6 +66,7 @@ export class ConversaoService {
         } else {
             return false;
         }
+        return false;
     }
 
     armazenaConversao(conversao: OrdenaConversao) {

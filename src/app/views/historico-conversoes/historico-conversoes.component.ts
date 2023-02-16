@@ -1,9 +1,11 @@
 import { Observable, elementAt } from 'rxjs';
 import { OrdenaConversao } from './../../model/Conversao';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import { ConversaoService } from './../conversao-moedas/conversao.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
     selector: 'app-historico-conversoes',
@@ -13,7 +15,6 @@ import { MatTableDataSource } from '@angular/material/table';
 export class HistoricoConversoesComponent implements OnInit {
     @Input() conversaoHistorico: OrdenaConversao[] = [];
     historicoCorvesoes: OrdenaConversao[] = [];
-
     readonly displayedColumns = [
         'data',
         'hour',
@@ -27,6 +28,9 @@ export class HistoricoConversoesComponent implements OnInit {
     dataSource = new MatTableDataSource<OrdenaConversao>(
         this.historicoCorvesoes
     );
+
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort) sort!: MatSort;
     constructor(private serviceConvesao: ConversaoService) {}
     ngOnInit(): void {
         this.obterHistorico();
@@ -41,6 +45,8 @@ export class HistoricoConversoesComponent implements OnInit {
             this.dataSource = new MatTableDataSource<OrdenaConversao>(
                 this.conversaoHistorico
             );
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
         } else {
             console.log('sessionStorage sem dados');
         }
@@ -57,6 +63,7 @@ export class HistoricoConversoesComponent implements OnInit {
 
         if (indexDel !== -1) {
             this.conversaoHistorico.splice(indexDel, 1);
+            this.dataSource.data.splice(indexDel, 1);
             sessionStorage.setItem(
                 'conversoes',
                 JSON.stringify(this.conversaoHistorico)
